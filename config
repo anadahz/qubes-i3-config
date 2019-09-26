@@ -16,66 +16,80 @@ set $mod Mod4
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 font pango:DejaVu Sans Mono 8
-# Before i3 v4.8, we used to recommend this one as the default:
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# The font above is very space-efficient, that is, it looks good, sharp and
-# clear in small sizes. However, its unicode glyph coverage is limited, the old
-# X core fonts rendering does not support right-to-left and this being a bitmap
-# font, it doesn’t scale on retina/hidpi displays.
 
-client.background	dom0		#121212
-client.focused		dom0	#522702 #522702 #ffffff #a6907d
-client.focused_inactive	dom0	#522702 #361a01 #ffffff #a6907d
-client.unfocused	dom0	#522702 #361a01 #999999 #a6907d
-client.urgent		dom0	#666666 #a6907d #ce0000 #a6907d
+# The combination of xss-lock, nm-applet and pactl is a popular choice, so
+# they are included here as an example. Modify as you see fit.
 
-client.background	red		#121212
-client.focused		red	#e53b27 #e53b27 #ffffff #f19b90
-client.focused_inactive	red	#e53b27 #902519 #ffffff #f19b90
-client.unfocused	red	#e53b27 #902519 #999999 #f19b90
-client.urgent		red	#e53b27 #f19b90 #ce0000 #f19b90
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# screen before suspend. Use loginctl lock-session to lock your screen.
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-client.background	orange		#121212
-client.focused		orange	#d05f03 #d05f03 #ffffff #daa67e
-client.focused_inactive	orange	#d05f03 #7b3702 #ffffff #daa67e
-client.unfocused	orange	#d05f03 #7b3702 #999999 #daa67e
-client.urgent		orange	#d05f03 #daa67e #ce0000 #daa67e
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q sset Master 4%+ unmute
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q sset Master 4%- unmute
+# amixer doesn't unmute properly
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
-client.background	yellow		#121212
-client.focused		yellow	#999b00 #999b00 #ffffff #cacb7c
-client.focused_inactive	yellow	#999b00 #666700 #ffffff #cacb7c
-client.unfocused	yellow	#999b00 #666700 #999999 #cacb7c
-client.urgent		yellow	#999b00 #cacb7c #ce0000 #cacb7c
+# use these keys for focus, movement, and resize directions when reaching for
+# the arrows is not convenient
+set $up k
+set $down j
+set $left h
+set $right l
 
-client.background	green		#121212
-client.focused		green	#04af5b #04af5b #ffffff #7dd5aa
-client.focused_inactive	green	#04af5b #02713b #ffffff #7dd5aa
-client.unfocused	green	#04af5b #02713b #999999 #7dd5aa
-client.urgent		green	#04af5b #7dd5aa #ce0000 #7dd5aa
+client.background       dom0            #121212
+client.focused          dom0    #522702 #522702 #ffffff #a6907d
+client.focused_inactive dom0    #522702 #361a01 #ffffff #a6907d
+client.unfocused        dom0    #522702 #361a01 #999999 #a6907d
+client.urgent           dom0    #666666 #a6907d #ce0000 #a6907d
 
-client.background	gray		#121212
-client.focused		gray 	#8c959f #8c959f #ffffff #c3c8cd
-client.focused_inactive	gray	#8c959f #676d75 #ffffff #c3c8cd
-client.unfocused	gray	#8c959f #676d75 #999999 #c3c8cd
-client.urgent		gray	#8c959f #c3c8cd #ce0000 #c3c8cd
+client.background       red             #121212
+client.focused          red     #e53b27 #e53b27 #ffffff #f19b90
+client.focused_inactive red     #e53b27 #902519 #ffffff #f19b90
+client.unfocused        red     #e53b27 #902519 #999999 #f19b90
+client.urgent           red     #e53b27 #f19b90 #ce0000 #f19b90
 
-client.background	blue		#121212
-client.focused		blue 	#3384d6 #3384d6 #ffffff #95bee8
-client.focused_inactive	blue	#3384d6 #1f5082 #ffffff #95bee8
-client.unfocused	blue	#3384d6 #1f5082 #999999 #95bee8
-client.urgent		blue	#3384d6 #95bee8 #ce0000 #95bee8
+client.background       orange          #121212
+client.focused          orange  #d05f03 #d05f03 #ffffff #daa67e
+client.focused_inactive orange  #d05f03 #7b3702 #ffffff #daa67e
+client.unfocused        orange  #d05f03 #7b3702 #999999 #daa67e
+client.urgent           orange  #d05f03 #daa67e #ce0000 #daa67e
 
-client.background	purple		#121212
-client.focused		purple	#8f5cbe #8f5cbe #ffffff #c6abdd
-client.focused_inactive	purple	#8f5cbe #5c3e78 #ffffff #c6abdd
-client.unfocused	purple	#8f5cbe #5c3e78 #999999 #c6abdd
-client.urgent		purple	#8f5cbe #c6abdd #ce0000 #c6abdd
+client.background       yellow          #121212
+client.focused          yellow  #999b00 #999b00 #ffffff #cacb7c
+client.focused_inactive yellow  #999b00 #666700 #ffffff #cacb7c
+client.unfocused        yellow  #999b00 #666700 #999999 #cacb7c
+client.urgent           yellow  #999b00 #cacb7c #ce0000 #cacb7c
 
-client.background	black		#121212
-client.focused		black	#595959 #595959 #ffffff #a3a3a3
-client.focused_inactive	black	#595959 #3a3a3a #ffffff #a3a3a3
-client.unfocused	black	#595959 #3a3a3a #999999 #a3a3a3
-client.urgent		black	#595959 #a3a3a3 #ce0000 #a3a3a3
+client.background       green           #121212
+client.focused          green   #04af5b #04af5b #ffffff #7dd5aa
+client.focused_inactive green   #04af5b #02713b #ffffff #7dd5aa
+client.unfocused        green   #04af5b #02713b #999999 #7dd5aa
+client.urgent           green   #04af5b #7dd5aa #ce0000 #7dd5aa
+
+client.background       gray            #121212
+client.focused          gray    #8c959f #8c959f #ffffff #c3c8cd
+client.focused_inactive gray    #8c959f #676d75 #ffffff #c3c8cd
+client.unfocused        gray    #8c959f #676d75 #999999 #c3c8cd
+client.urgent           gray    #8c959f #c3c8cd #ce0000 #c3c8cd
+
+client.background       blue            #121212
+client.focused          blue    #3384d6 #3384d6 #ffffff #95bee8
+client.focused_inactive blue    #3384d6 #1f5082 #ffffff #95bee8
+client.unfocused        blue    #3384d6 #1f5082 #999999 #95bee8
+client.urgent           blue    #3384d6 #95bee8 #ce0000 #95bee8
+
+client.background       purple          #121212
+client.focused          purple  #8f5cbe #8f5cbe #ffffff #c6abdd
+client.focused_inactive purple  #8f5cbe #5c3e78 #ffffff #c6abdd
+client.unfocused        purple  #8f5cbe #5c3e78 #999999 #c6abdd
+client.urgent           purple  #8f5cbe #c6abdd #ce0000 #c6abdd
+
+client.background       black           #121212
+client.focused          black   #595959 #595959 #ffffff #a3a3a3
+client.focused_inactive black   #595959 #3a3a3a #ffffff #a3a3a3
+client.unfocused        black   #595959 #3a3a3a #999999 #a3a3a3
+client.urgent           black   #595959 #a3a3a3 #ce0000 #a3a3a3
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -90,10 +104,10 @@ bindsym $mod+Shift+q kill
 bindsym $mod+r exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i -nb #d2d2d2 -nf #000000 -sb #63a0ff"
 
 # change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -102,10 +116,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -120,7 +134,7 @@ bindsym $mod+period split h
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen
+bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -137,34 +151,49 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+d focus child
+
+# focus next window (cycle) right
+bindsym $mod+Tab focus right
+
+# focus next window (cycle) down
+bindsym $mod+Shift+Tab focus down
+
+# Disable scratchpad shortcuts
+# move the currently focused window to the scratchpad
+#bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+#bindsym $mod+minus scratchpad show
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
-
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
 
 # reload the configuration file
-bindsym $mod+Shift+t reload
+bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
@@ -178,20 +207,21 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym odiaeresis resize grow width 10 px or 10 ppt
+        bindsym $left       resize shrink width 10 px or 10 ppt
+        bindsym $down       resize grow height 10 px or 10 ppt
+        bindsym $up         resize shrink height 10 px or 10 ppt
+        bindsym $right      resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Left        resize shrink width 10 px or 10 ppt
+        bindsym Down        resize grow height 10 px or 10 ppt
+        bindsym Up          resize shrink height 10 px or 10 ppt
+        bindsym Right       resize grow width 10 px or 10 ppt
 
-        # back to normal: Enter or Escape
+        # back to normal: Enter or Escape or Mod1+r
         bindsym Return mode "default"
         bindsym Escape mode "default"
+        bindsym Mod1+r mode "default"
 }
 
 bindsym Mod1+r mode "resize"
@@ -202,25 +232,22 @@ bar {
         status_command qubes-i3status
         colors {
             background #d2d2d2
-            statusline #00000
+            statusline #333333
 
             #class               #border #backgr #text
-            focused_workspace    #4c7899 #63a0ff #000000
-            active_workspace     #333333 #5f676a #ffffff
-            inactive_workspace   #222222 #333333 #888888
-            urgent_workspace     #BD2727 #E79E27 #000000
+            focused_workspace    #3874d8 #63a0ff #333333
+            active_workspace     #333333 #888888 #f5f5f5
+            inactive_workspace   #888888 #333333 #888888
+            urgent_workspace     #bd2727 #e79e27 #333333
         }
 }
 
-# Use a screen locker
-exec --no-startup-id "xautolock -detectsleep -time 10 -locker 'i3lock -f -c ff0000' -notify 30 -notifier \"notify-send -t 20000 'Locking screen in 30 seconds'\""
+# Avoids screen size fingerprinting
+for_window [title="Tor Browser"] floating enable
 
 # Make sure all xdg autostart entries are started, this is (among other things)
 # necessary to make sure transient vm's come up
 exec --no-startup-id qubes-i3-xdg-autostart
-
-# Do not manage position and sizing for Tor Browser windows
-for_window [title="Tor Browser"] floating enable
 
 # Focus to urgent window
 bindsym $mod+x [urgent=latest] focus
@@ -251,14 +278,6 @@ bindsym XF86Tools mode "$mode_display
 
 # Lock screen shortcut
 bindsym Control+Mod1+l exec --no-startup-id i3lock -f -c ff0000
-
-# Control sound volume
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q sset Master 4%+ unmute
-bindsym $mod+Shift+KP_Add exec --no-startup-id amixer -q sset Master 4%+ unmute
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q sset Master 4%- unmute
-bindsym $mod+Shift+KP_Subtract exec --no-startup-id amixer -q sset Master 4%- unmute
-bindsym XF86AudioMute exec --no-startup-id amixer -q sset Master toggle && amixer -q sset Headphone unmute
-bindsym $mod+Shift+KP_Multiply exec --no-startup-id amixer -q sset Master toggle && amixer -q sset Headphone unmute
 
 # dmenu-i3-window-jumper a window selector for i3-wm
 bindsym Mod1+Tab exec --no-startup-id dmenu-i3-window-jumper
