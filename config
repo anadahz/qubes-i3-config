@@ -38,7 +38,7 @@ set $left h
 set $right l
 
 client.background       dom0            #121212
-client.focused          dom0    #522702 #522702 #ffffff #a6907d
+client.focused          dom0    #522702 #643002 #ffffff #a6907d
 client.focused_inactive dom0    #522702 #361a01 #ffffff #a6907d
 client.unfocused        dom0    #522702 #361a01 #999999 #a6907d
 client.urgent           dom0    #666666 #a6907d #ce0000 #a6907d
